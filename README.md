@@ -21,7 +21,7 @@ Related links: [embarcadero.com][3] - [learndelphi.org][4]
 
 ## Documentation
 
-Follow the [Project Site](https://ethea.it/docs/markdowntools/) to known how to use this Viewer and the Delphi component and other tools related to Markdown format.
+Follow the [Project Site](https://ethea.it/docs/markdowntools/) to known how to use this Viewer and the Delphi component and other tools related to Markdown format like the Markdown Text Editor.
 
 ### Features
 
