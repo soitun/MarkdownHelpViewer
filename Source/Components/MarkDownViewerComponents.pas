@@ -429,7 +429,7 @@ end;
 
 procedure TCustomMarkdownViewer.ExportToFileHTML(const AFileName: TFileName);
 begin
-  SaveUTF8File(FHTMLContent.Text, AFileName);
+  SaveUTF8File(AFileName, FHTMLContent.Text);
 end;
 
 procedure TCustomMarkdownViewer.SetOnImageRequest(const AValue: TGetImageEvent);
