@@ -83,6 +83,9 @@ uses
   , Vcl.Dialogs
   ;
 
+const
+  HELP_URL = 'https://ethea.it/docs/markdowntools/';
+  PROJECT_VER = '2.3.7';
 var
   AMarkdownFileExt: TArray<String>;
   AHTMLFileExt: TArray<String>;
@@ -147,7 +150,7 @@ begin
   end
   else if Index = 1 then
   ShellExecute(0, 'open',
-    PChar('https://github.com/EtheaDev/MarkdownHelpViewer'), nil, nil, SW_SHOWNORMAL);
+    PChar(HELP_URL), nil, nil, SW_SHOWNORMAL);
 end;
 
 function TMarkdownViewerComponentEditor.GetVerb(Index: Integer): string;
@@ -155,7 +158,8 @@ begin
   if Index = 0 then
     Result := 'Load from file...';
   if Index = 1 then
-    Result := 'Project page on GitHub...';
+    Result := Format('Ver. %s - © Ethea S.r.l. - Open Web Help...',
+      [PROJECT_VER]);
 end;
 
 function TMarkdownViewerComponentEditor.GetVerbCount: Integer;

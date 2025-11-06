@@ -13,9 +13,7 @@ object fmMain: TfmMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu
-  OldCreateOrder = True
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 15
   object RightSplitter: TSplitter
     Left = 476

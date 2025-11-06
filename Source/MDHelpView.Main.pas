@@ -253,7 +253,6 @@ uses
   {$IFNDEF NO_VCL_STYLES}
   , Vcl.Styles.Fixes
   , Vcl.Styles.FormStyleHooks
-  , Vcl.Styles.NC
   , Vcl.Styles.OwnerDrawFix
   , Vcl.Styles.Utils.ScreenTips
   , Vcl.Styles.Utils.SysStyleHook

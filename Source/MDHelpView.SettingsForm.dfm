@@ -163,7 +163,6 @@ object MDSettingsForm: TMDSettingsForm
         Align = alTop
         Caption = 'User interface'
         TabOrder = 0
-        ExplicitLeft = 2
         object UILabel: TLabel
           Left = 15
           Top = 23
@@ -525,8 +524,6 @@ object MDSettingsForm: TMDSettingsForm
       end>
     TabOrder = 2
     OnButtonClicked = MenuButtonGroupButtonClicked
-    ExplicitLeft = -2
-    ExplicitTop = 47
   end
   object TitlePanel: TPanel
     Left = 0
