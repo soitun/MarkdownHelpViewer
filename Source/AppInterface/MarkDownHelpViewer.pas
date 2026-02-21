@@ -2,7 +2,7 @@
 {                                                                              }
 {       This units implements the interfaces for the Help Viewer               }
 {                                                                              }
-{       Copyright (c) 2023-2025 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2023-2026 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       Contributors: Nicolò Boccignone, Emanuele Biglia                       }
 {                                                                              }
@@ -44,8 +44,14 @@ type
   end;
   PRecToPass = ^THelpInfoToPass;
 
+  TUnderstandsHelpContext = procedure(const AContext: {$if CompilerVersion > 31}THelpContext{$else}Integer{$endif};
+      var AKeyword: string);
+
 //To register the position of the Viewer if not installed
 procedure RegisterMDViewerLocation(AViewerExeFileName: TFileName);
+
+//To register custom handle procedure to Understand specific HelpContext
+procedure RegisterHelpCustomHandlers(const UnderstandsHelpContext: TUnderstandsHelpContext = nil);
 
 var
   AMarkdownFileExt: TArray<String>;
@@ -124,6 +130,7 @@ var
   Markdown_HelpViewer: TMarkdownHelpViewer;
   Markdown_HelpViewerIntf: ICustomHelpViewer;
   _ViewerLocation: TFileName;
+  _OnUnderstandsHelpContext: TUnderstandsHelpContext;
 
 type
   TEnumInfo = record
@@ -142,11 +149,17 @@ begin
     LKeyWord := HelpKeyword
   else if AContext <> 0 then
   begin
-    LExtension := ExtractFileExt(AFileName);
-    LKeyWord := IntToStr(AContext)+LExtension;
+    LKeyWord := IntToStr(AContext);
+
+    //Custom Keyword based on Context
+    if Assigned(_OnUnderstandsHelpContext) then
+      _OnUnderstandsHelpContext(AContext, LKeyword);
   end
   else
     LKeyword := '';
+
+  LExtension := ExtractFileExt(AFileName);
+  LKeyword := LKeyword+LExtension;
 
   //First, Try the Keyword only
   LPath := ExtractFilePath(AFileName);
@@ -360,10 +373,11 @@ end;
   determine if the Viewer provide helps on a particular keyword string. }
 function TMarkdownHelpViewer.UnderstandsKeyword(const HelpString: string): Integer;
 var
-  HelpFile: string;
+  LHelpFileName: string;
 begin
-  HelpFile := GetHelpFile(HelpString);
-  if HelpFile <> '' then
+  LHelpFileName := GetHelpFile(HelpString);
+
+  if LHelpFileName <> '' then
     Result := 1
   else
     Result := 0;
@@ -447,10 +461,10 @@ end;
 
 procedure TMarkdownHelpViewer.ShowHelp(const HelpString: string);
 var
-  FileName : string;
+  LFileName : string;
 begin
-  FileName := GetHelpFile(HelpString);
-  ShowMarkdownFile(FileName, HelpString, 0);
+  LFileName := GetHelpFile(HelpString);
+  ShowMarkdownFile(LFileName, HelpString, 0);
 end;
 
 { NotifyID is called by the Help Manager after a successful registration
@@ -471,8 +485,8 @@ end;
   terminate any externally spawned subsystem without shutting itself down. }
 procedure TMarkdownHelpViewer.SoftShutDown;
 begin
-  ;
-  if Assigned(FHelpManager) then HelpManager := nil;
+  if Assigned(FHelpManager) then
+    HelpManager := nil;
 end;
 
 { IExtendedHelpViewer }
@@ -482,10 +496,11 @@ end;
   It's default behavior is to say 'yes'. }
 function TMarkdownHelpViewer.UnderstandsTopic(const Topic: string): Boolean;
 var
-  HelpFile: string;
+  LHelpFileName: string;
 begin;
-  HelpFile := GetHelpFile(Topic);
-  Result := HelpFile <> '';
+  LHelpFileName := GetHelpFile(Topic);
+
+  Result := LHelpFileName <> '';
 end;
 
 { DisplayTopic is called by the Help Manager if a Help Viewer claims
@@ -494,10 +509,10 @@ end;
 
 procedure TMarkdownHelpViewer.DisplayTopic(const Topic: string);
 var
-  HelpFile: string;
+  LHelpFileName: string;
 begin
-  HelpFile := GetHelpFile('');
-  ShowMarkdownFile(HelpFile, Topic);
+  LHelpFileName := GetHelpFile('');
+  ShowMarkdownFile(LHelpFileName, Topic);
 end;
 
 { UnderstandsContext is a querying function called by the Help Manager
@@ -509,9 +524,13 @@ end;
 function TMarkdownHelpViewer.UnderstandsContext(
   const ContextId: {$if CompilerVersion > 31}THelpContext{$else}Integer{$endif};
   const HelpFileName: string): Boolean;
+var
+  LHelpFileName: string;
 begin
   //Accept ContextId if resolve a file markdown with this context
-  Result := GetHelpFile(ContextId) <> '';
+  LHelpFileName := GetHelpFile(ContextId);
+
+  Result := (LHelpFileName <> '');
 end;
 
 { DisplayHelpByContext is used by the Help Manager to request that a
@@ -605,11 +624,17 @@ begin
   end;
 end;
 
+procedure RegisterHelpCustomHandlers(const UnderstandsHelpContext: TUnderstandsHelpContext = nil);
+begin
+  _OnUnderstandsHelpContext := UnderstandsHelpContext;
+end;
+
 initialization
   Markdown_HelpViewer := TMarkdownHelpViewer.Create;
   System.HelpIntfs.RegisterViewer(Markdown_HelpViewerIntf,
     Markdown_HelpViewer.FHelpManager);
   _ViewerLocation := '';
+  _OnUnderstandsHelpContext := nil;
 
   SetLength(AMarkdownFileExt, 9);
   AMarkdownFileExt[0] := '.md';
@@ -619,8 +644,8 @@ initialization
   AMarkdownFileExt[4] := '.mdtxt';
   AMarkdownFileExt[5] := '.mdtext';
   AMarkdownFileExt[6] := '.markdown';
-  AMarkdownFileExt[7] := '.txt';
-  AMarkdownFileExt[8] := '.text';
+  //AMarkdownFileExt[7] := '.txt';
+  //AMarkdownFileExt[8] := '.text';
 
   SetLength(AHTMLFileExt, 2);
   AHTMLFileExt[0] := '.html';

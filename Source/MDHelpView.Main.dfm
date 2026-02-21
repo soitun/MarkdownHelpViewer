@@ -27,8 +27,6 @@ object MainForm: TMainForm
     Top = 50
     Width = 6
     Height = 372
-    ExplicitTop = 49
-    ExplicitHeight = 373
   end
   object PageControl: TPageControl
     Left = 0
@@ -67,34 +65,30 @@ object MainForm: TMainForm
       Hint = 'List of Files into Working Directory'
       Caption = 'Working Dir'
       ImageIndex = 1
-      DesignSize = (
-        292
-        342)
       object lbIndex: TLabel
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 286
+        Width = 75
         Height = 15
         Align = alTop
         Caption = 'Search for file:'
-        ExplicitWidth = 75
       end
       object lbSelectFile: TLabel
-        Left = 0
-        Top = 50
-        Width = 292
+        AlignWithMargins = True
+        Left = 3
+        Top = 53
+        Width = 94
         Height = 15
         Align = alTop
         Caption = 'Select file to view:'
-        ExplicitWidth = 94
       end
       object FileListBox: TFileListBox
         AlignWithMargins = True
         Left = 3
-        Top = 68
+        Top = 74
         Width = 286
-        Height = 240
+        Height = 204
         Margins.Bottom = 34
         Align = alClient
         FileType = [ftReadOnly, ftNormal]
@@ -117,13 +111,14 @@ object MainForm: TMainForm
         OnChange = edFileSearchChange
       end
       object btIndex: TButton
-        Left = 179
-        Top = 314
-        Width = 110
+        AlignWithMargins = True
+        Left = 3
+        Top = 315
+        Width = 286
         Height = 24
         Cursor = crHandPoint
         Action = acView
-        Anchors = [akRight, akBottom]
+        Align = alBottom
         Default = True
         TabOrder = 2
       end
@@ -131,18 +126,14 @@ object MainForm: TMainForm
     object tsSearch: TTabSheet
       Caption = 'Search'
       ImageIndex = 2
-      DesignSize = (
-        292
-        342)
       object lbSelectSearch: TLabel
         AlignWithMargins = True
         Left = 3
         Top = 90
-        Width = 286
+        Width = 94
         Height = 15
         Align = alTop
         Caption = 'Select file to view:'
-        ExplicitWidth = 94
       end
       object paSearch: TPanel
         Left = 0
@@ -152,58 +143,47 @@ object MainForm: TMainForm
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
-        DesignSize = (
-          292
-          87)
         object lbSearch: TLabel
           AlignWithMargins = True
-          Left = 4
-          Top = 7
-          Width = 284
+          Left = 3
+          Top = 3
+          Width = 167
           Height = 15
-          Margins.Left = 4
-          Margins.Top = 7
-          Margins.Right = 4
           Align = alTop
           Caption = 'Input keyword to search in files:'
-          ExplicitWidth = 167
         end
         object edSearch: TEdit
           AlignWithMargins = True
-          Left = 4
-          Top = 25
-          Width = 284
+          Left = 3
+          Top = 24
+          Width = 286
           Height = 23
           Hint = 'Input the keyword to search into files in the working folder:'
-          Margins.Left = 4
-          Margins.Top = 0
-          Margins.Right = 4
           Align = alTop
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
         end
         object btSearch: TButton
-          Left = 178
-          Top = 54
-          Width = 110
+          AlignWithMargins = True
+          Left = 3
+          Top = 60
+          Width = 286
           Height = 24
           Cursor = crHandPoint
           Action = acSearch
-          Anchors = [akRight, akBottom]
+          Align = alBottom
           Default = True
           TabOrder = 1
         end
       end
       object SearchListBox: TListBox
         AlignWithMargins = True
-        Left = 4
+        Left = 3
         Top = 108
-        Width = 284
-        Height = 200
-        Margins.Left = 4
+        Width = 286
+        Height = 170
         Margins.Top = 0
-        Margins.Right = 4
         Margins.Bottom = 34
         Align = alClient
         ItemHeight = 15
@@ -211,13 +191,14 @@ object MainForm: TMainForm
         OnDblClick = acViewSearchExecute
       end
       object btSearchView: TButton
-        Left = 177
+        AlignWithMargins = True
+        Left = 3
         Top = 315
-        Width = 110
+        Width = 286
         Height = 24
         Cursor = crHandPoint
         Action = acViewSearch
-        Anchors = [akRight, akBottom]
+        Align = alBottom
         TabOrder = 2
       end
     end
