@@ -8,13 +8,13 @@ The integration was tested from **Delphi XE6** to **Delphi 13**: for older versi
 
 Use MarkdownHelpViewer.pas (located into AppInterface folder) in dpr:
 
-```Delphi
+```Pascal
   MarkdownHelpViewer in '..\..\AppInterface\MarkDownHelpViewer.pas',
 ```
 
 then specify the default file of the help:
 
-```Delphi
+```Pascal
   Application.HelpFile := ExtractFilePath(Application.ExeName)+'..\Help\Home.md';
 ```
 
@@ -27,7 +27,7 @@ so the interface can launch the viewer automatically.
 
 If you don't want to use the provided Setup you can register the location of the Viewer built by yourself and deployed to a specific location, for example:
 
-```Delphi
+```Pascal
 {$IFDEF WIN32}
   RegisterMDViewerLocation(ExtractFilePath(Application.ExeName)+
     '..\..\Bin32\MDHelpViewer.exe');
@@ -40,7 +40,7 @@ If you don't want to use the provided Setup you can register the location of the
 
 To test the application you can lauch the Home.md help using the menu About/Help: in the OnClick handler invoke the help:
 
-```Delphi
+```Pascal
 procedure TfmMain.HelpMenuItemClick(Sender: TObject);
 begin
   Application.HelpKeyword('home');
@@ -53,7 +53,7 @@ When the user press "F1" inside the application, the HelpSystem is invoked with 
 
 Then the interface searches in the same folder of default file (specified into Application.HelpFile) the specific file using those rules:
 
-#### Rules of precedence:
+#### Rules of precedence to search filed based on Help keyword or Help Context:
 
 - first search a file named as the Keyword or the Context with any markdown extension (eg. 1000.md, MainForm.md)
 - Then, try the Help Name and the Keyword (eg.Home1000.md, HomeMainForm.md)

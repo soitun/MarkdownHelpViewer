@@ -240,7 +240,7 @@ begin
 {$IFNDEF DISABLE_STYLES}
   if StyleServices.Enabled then
   begin
-    //High-DPI Themes (Delphi 11.0)
+    //High-DPI Themes (Delphi 13.1)
     RegisterThemeAttributes('Windows'               ,ttLight );
     RegisterThemeAttributes('Aqua Light Slate'      ,ttLight );
     RegisterThemeAttributes('Copper'                ,ttLight );
@@ -270,6 +270,8 @@ begin
     RegisterThemeAttributes('Windows10 Malibu'      ,ttLight );
     RegisterThemeAttributes('Windows11 Modern Dark' ,ttDark  );
     RegisterThemeAttributes('Windows11 Modern Light',ttLight );
+    RegisterThemeAttributes('Windows Modern Dark'   ,ttDark  );
+    RegisterThemeAttributes('Windows Modern'        ,ttLight );
   end;
 {$ELSE}
     RegisterThemeAttributes('Windows'            ,ttLight );

@@ -519,7 +519,7 @@ object MDSettingsForm: TMDSettingsForm
       end
       item
         Caption = 'Updates'
-        ImageIndex = 5
+        ImageIndex = 7
         ImageName = 'update'
       end>
     TabOrder = 2

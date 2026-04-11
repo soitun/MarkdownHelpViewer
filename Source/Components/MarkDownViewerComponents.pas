@@ -528,6 +528,9 @@ end;
 procedure TCustomMarkdownViewer.Loaded;
 begin
   inherited;
+  //Load html content into HtmlViewer, reset scrollbar position
+  if FMarkdownContent.text <> '' then
+    RefreshViewer(True, FRescalingImage, False);
 end;
 
 procedure TCustomMarkdownViewer.LoadFromFile(const AFileName: TFileName);
