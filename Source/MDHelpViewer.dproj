@@ -128,8 +128,7 @@
                 <Source>
                     <Source Name="MainSource">MDHelpViewer.dpr</Source>
                 </Source>
-                <Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
                 <WelcomePageFile Path="..\README.htm"/>
                 <WelcomePageFolder/>
             </Delphi.Personality>
