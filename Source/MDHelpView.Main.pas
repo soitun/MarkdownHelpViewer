@@ -1,11 +1,11 @@
-{******************************************************************************}
+﻿{******************************************************************************}
 {                                                                              }
 {       Markdown Help Viewer: Main Form                                        }
 {       (Help Viewer and Help Interfaces for Markdown files)                   }
 {                                                                              }
 {       Copyright (c) 2023-2026 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
-{       Contributors: Nicol� Boccignone, Emanuele Biglia                       }
+{       Contributors: Nicolò Boccignone, Emanuele Biglia                       }
 {                                                                              }
 {       https://github.com/EtheaDev/MarkdownHelpViewer                         }
 {                                                                              }
@@ -120,6 +120,8 @@ type
     function IndexOfCurrentFile: Integer;
     procedure HtmlViewerHotSpotClick(Sender: TObject; const ASource: ThtString;
       var Handled: Boolean);
+    procedure HtmlViewerKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure acNextPageUpdate(Sender: TObject);
     procedure acPreviousPageExecute(Sender: TObject);
     procedure acNextPageExecute(Sender: TObject);
@@ -312,7 +314,7 @@ var
 
 begin
   LOutputFolder := IncludeTrailingPathDelimiter(WorkingFolder)+'..\WebHelp\';
-  LResult := MessageDlg(
+  LResult := StyledMessageDlg(
     Format(CONFIRM_EXPORT_HTML, [FileListBox.Count]),
       TMsgDlgType.mtConfirmation,
       [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbYesToAll, TMsgDlgBtn.mbNo, TMsgDlgBtn.mbCancel],
@@ -564,7 +566,7 @@ begin
     WriteSettingsToIni;
     if LOldLanguage <> FViewerSettings.GUILanguage then
     begin
-      MessageDlg(
+      StyledMessageDlg(
         CLOSE_APP_FOR_LANG,
         TMsgDlgType.mtInformation,
         [TMsgDlgBtn.mbOK], 0);
@@ -776,6 +778,17 @@ begin
   begin
     LoadAndTransformFile(LFileName);
     Handled := True;
+  end;
+end;
+
+procedure TMainForm.HtmlViewerKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  //Allow copying the selected text from the (read-only) viewer with Ctrl+C
+  if (Key = Ord('C')) and (Shift = [ssCtrl]) and (Sender is THtmlViewer) then
+  begin
+    THtmlViewer(Sender).CopyToClipboard;
+    Key := 0;
   end;
 end;
 
@@ -1266,7 +1279,7 @@ end;
 
 procedure TMainForm.FileSavedAskToOpen(const AFileName: string);
 begin
-  if MessageDlg(Format(FILE_SAVED,[AFileName]),
+  if StyledMessageDlg(Format(FILE_SAVED,[AFileName]),
     TMsgDlgType.mtInformation, [mbYes, MbNo], 0) = mrYes then
   begin
     ShellExecute(handle, 'open', PChar(AFilename), nil, nil, SW_SHOWNORMAL);
@@ -1500,7 +1513,7 @@ begin
   //This is an event-handler for exceptions that replace Delphi standard handler
   if E is EAccessViolation then
   begin
-    if MessageDlg(
+    if StyledMessageDlg(
       Format('Unexpected Error: %s%s',[sLineBreak,E.Message]),
       TMsgDlgType.mtError,
       [TMsgDlgBtn.mbOK, TMsgDlgBtn.mbAbort], 0) = mrAbort then
@@ -1509,7 +1522,7 @@ begin
   else
   begin
 
-    MessageDlg(
+    StyledMessageDlg(
       Format('Error: %s%s',[sLineBreak,E.Message]),
       TMsgDlgType.mtError,
       [TMsgDlgBtn.mbOK, TMsgDlgBtn.mbHelp], 0);

@@ -345,7 +345,7 @@ object MainForm: TMainForm
       BorderStyle = htSingle
       DefBackground = clWindow
       HistoryMaxCount = 0
-      NoSelect = True
+      NoSelect = False
       PrintMarginBottom = 0.800000000000000000
       PrintMarginLeft = 0.800000000000000000
       PrintMarginRight = 0.800000000000000000
@@ -354,6 +354,7 @@ object MainForm: TMainForm
       Text = ''
       Align = alClient
       TabOrder = 0
+      OnKeyDown = HtmlViewerKeyDown
       Touch.InteractiveGestures = [igPan]
       Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia]
     end

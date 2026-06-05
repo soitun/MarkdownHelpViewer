@@ -102,6 +102,7 @@ uses
   , MDHelpView.Main
   , GitHubAPI
   , MDHelpView.Messages
+  , Vcl.StyledTaskDialog
   ;
 
 {$R *.dfm}
@@ -159,7 +160,7 @@ begin
     except
       on E: ECheckNewVersionException do
       begin
-        if TaskMessageDlg(CHECK_FOR_UPDATE_BTN,
+        if StyledTaskMessageDlg(CHECK_FOR_UPDATE_BTN,
           Format(Error_Checking_New_Version, [E.Message]),
           TMsgDlgType.mtWarning,
           [mbAbort, mbRetry],0, mbAbort) = mrRetry then
@@ -176,13 +177,13 @@ begin
   end;
   if Result then
   begin
-    Result := MessageDlg(Format(NEW_VERSION_AVAILABLE,
+    Result := StyledMessageDlg(Format(NEW_VERSION_AVAILABLE,
       [LCurrentVersion, LNewVersion]),
       TMsgDlgType.mtWarning, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo, TMsgDlgBtn.mbCancel],
       0) = mrYes;
   end
   else if AShowMsg then
-    MessageDlg(Format(NEW_VERSION_NOT_AVAILABLE,
+    StyledMessageDlg(Format(NEW_VERSION_NOT_AVAILABLE,
       [LCurrentVersion]), TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
 end;
 
