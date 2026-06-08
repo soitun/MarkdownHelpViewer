@@ -38,6 +38,7 @@ uses
   HTMLUn2, HtmlView, HtmlGlobals,
   vmHtmlToPdf, SVGIconImageListBase,
   SVGIconImageList, CBMultiLanguage,
+  MDCodeHighlightEmitter,
   {$IFDEF STYLEDCOMPONENTS}
   Vcl.StyledComponentsHooks,
   Vcl.StyledMessagesHooks,
@@ -152,6 +153,7 @@ type
     FOldViewerResize: Integer;
     FFirstTime: Boolean;
     FOpenedFileList: TStringList;
+    FCodeHighlightEmitter: TCodeHighlightEmitterBase;
     FHTMLFontSize: Integer;
     FHtmlContent: string;
     FCssContent: string;
@@ -629,6 +631,9 @@ begin
   FOldViewerResize := ClientPanel.Width;
 
   FOpenedFileList := TStringList.Create;
+  //Optional syntax-highlighting emitter for fenced code blocks (nil when the
+  //MD_SYNTAX_HIGHLIGHTING define is off, so no SynEdit dependency is linked).
+  FCodeHighlightEmitter := CreateCodeHighlightEmitter;
   dmResources.Settings := FViewerSettings;
 
   UpdateHTMLViewer(HtmlViewer);
@@ -647,6 +652,7 @@ procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   FViewerSettings.Free;
   FOpenedFileList.Free;
+  FCodeHighlightEmitter.Free;
 end;
 
 procedure TMainForm.FormKeyPress(Sender: TObject; var Key: Char);
@@ -894,6 +900,8 @@ end;
 function TMainForm.TransformMDToHTML(const AMdContent: string): string;
 var
   LMarkdownProcessor: TMarkdownProcessor;
+  LBackground, LForeground: TColor;
+  LDark: Boolean;
 begin
   //Transform Markdown content in HTML
   if (AMdContent <> '') then
@@ -902,9 +910,27 @@ begin
     LMarkdownProcessor := TMarkdownProcessor.CreateDialect(
       FViewerSettings.ProcessorDialect);
     Try
+      //Optional syntax highlighting of fenced code blocks. The form owns the
+      //emitter, so we detach it before freeing the processor (TConfiguration
+      //frees its codeBlockEmitter).
+      if FCodeHighlightEmitter <> nil then
+      begin
+        LBackground := ColorToRGB(HtmlViewer.DefBackground);
+        LDark := (GetRValue(LBackground) * 299 + GetGValue(LBackground) * 587 +
+          GetBValue(LBackground) * 114) div 1000 < 128;
+        if LDark then
+          LForeground := clWhite
+        else
+          LForeground := clBlack;
+        FCodeHighlightEmitter.SetTheme(LDark, HtmlViewer.DefBackground, LForeground,
+          FViewerSettings.HTMLFontName, FViewerSettings.HTMLFontSize);
+        LMarkdownProcessor.Config.codeBlockEmitter := FCodeHighlightEmitter;
+      end;
       Result := LMarkdownProcessor.Process(AMdContent);
       Result := CSSContent+Result;
     Finally
+      if FCodeHighlightEmitter <> nil then
+        LMarkdownProcessor.Config.codeBlockEmitter := nil;
       LMarkdownProcessor.Free;
     End;
   end

@@ -4,7 +4,7 @@
 {                                                                              }
 {       Copyright (c) 2023-2026 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
-{       Contributors: Nicolò Boccignone, Emanuele Biglia                       }
+{       Contributors: Nicolï¿½ Boccignone, Emanuele Biglia                       }
 {                                                                              }
 {       https://github.com/EtheaDev/MarkdownHelpViewer                         }
 {                                                                              }
@@ -636,7 +636,7 @@ initialization
   _ViewerLocation := '';
   _OnUnderstandsHelpContext := nil;
 
-  SetLength(AMarkdownFileExt, 9);
+  SetLength(AMarkdownFileExt, 7);
   AMarkdownFileExt[0] := '.md';
   AMarkdownFileExt[1] := '.mkd';
   AMarkdownFileExt[2] := '.mdwn';
@@ -644,8 +644,8 @@ initialization
   AMarkdownFileExt[4] := '.mdtxt';
   AMarkdownFileExt[5] := '.mdtext';
   AMarkdownFileExt[6] := '.markdown';
-  //AMarkdownFileExt[7] := '.txt';
-  //AMarkdownFileExt[8] := '.text';
+  //NB: keep SetLength in sync with the number of filled entries: empty
+  //trailing items would produce a '*' file-mask matching every file.
 
   SetLength(AHTMLFileExt, 2);
   AHTMLFileExt[0] := '.html';

@@ -52,6 +52,7 @@ uses
   , HtmlGlobals
   , MarkdownUtils
   , MarkdownProcessor
+  , MDCodeHighlightEmitter
   ;
 
 resourcestring
@@ -78,6 +79,7 @@ Type
     FAutoLoadOnHotSpotClick: boolean;
     FOnURLClicked: TURLClicked;
     FOnFileNameClicked: TFileNameClicked;
+    FCodeHighlightEmitter: TCodeHighlightEmitterBase;
     procedure SetFileName(const AValue: TFileName);
     procedure SetProcessorDialect(const AValue: TMarkdownProcessorDialect);
     function IsCssStyleStored: Boolean;
@@ -354,6 +356,9 @@ begin
   FHTMLContent.OnChange := HTMLContentChanged;
   FCssStyle := TStringList.Create;
   FAutoLoadOnHotSpotClick := True;
+  //Optional syntax-highlighting emitter for fenced code blocks (nil when the
+  //MD_SYNTAX_HIGHLIGHTING define is off, so no SynEdit dependency is linked).
+  FCodeHighlightEmitter := CreateCodeHighlightEmitter;
 
   inherited OnImageRequest := HtmlViewerImageRequest;
 
@@ -423,6 +428,7 @@ begin
   FreeAndNil(FMarkdownContent);
   FreeAndNil(FHTMLContent);
   FreeAndNil(FCssStyle);
+  FreeAndNil(FCodeHighlightEmitter);
 
   inherited;
 end;
@@ -708,12 +714,33 @@ function TCustomMarkdownViewer.TransformContent(const AMarkdownContent: string;
   const ACssStyle: string = ''): string;
 var
   LMarkdownProcessor: TMarkdownProcessor;
+  LBackground: TColor;
+  LForeground: TColor;
+  LDark: Boolean;
 begin
   //Transform file Markdown in HTML using TMarkdownProcessor
   LMarkdownProcessor := TMarkdownProcessor.CreateDialect(AProcessorDialect);
   Try
+    //Optional syntax highlighting of fenced code blocks. The caller owns the
+    //emitter, so we detach it before freeing the processor (TConfiguration
+    //frees its codeBlockEmitter).
+    if FCodeHighlightEmitter <> nil then
+    begin
+      LBackground := ColorToRGB(DefBackground);
+      LDark := (GetRValue(LBackground) * 299 + GetGValue(LBackground) * 587 +
+        GetBValue(LBackground) * 114) div 1000 < 128;
+      if LDark then
+        LForeground := clWhite
+      else
+        LForeground := clBlack;
+      FCodeHighlightEmitter.SetTheme(LDark, DefBackground, LForeground,
+        DefFontName, DefFontSize);
+      LMarkdownProcessor.Config.codeBlockEmitter := FCodeHighlightEmitter;
+    end;
     Result := ACssStyle+LMarkdownProcessor.Process(AMarkdownContent);
   Finally
+    if FCodeHighlightEmitter <> nil then
+      LMarkdownProcessor.Config.codeBlockEmitter := nil;
     LMarkdownProcessor.Free;
   End;
 end;
