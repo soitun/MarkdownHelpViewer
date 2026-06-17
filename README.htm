@@ -33,7 +33,7 @@ td{
 }
 </style>
 <h1>Markdown Help Viewer <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg" alt="License"/></a></h1>
-<p><strong>Latest Version 2.5.0 - 08 Jun 2026</strong></p>
+<p><strong>Latest Version 2.5.1 - 17 Jun 2026</strong></p>
 <p><strong>An integrated help system based on files in Markdown format (and also html), for Delphi and Windows applications</strong></p>
 <ul>
 <li><p>A &ldquo;Setup&rdquo; of the pre-built <strong>&ldquo;Markdown Help Viewer&rdquo;</strong> ready to use.</p>
@@ -75,13 +75,13 @@ td{
 <p><img src="./Images/ContentPageIta.png" alt="Markdown Help Viewer Italian"/></p>
 <h3>Step to activate this Help into MarkdownHelpViewerDemo Application</h3>
 <p>Use MarkdownHelpViewer.pas (located into AppInterface folder) in dpr:</p>
-<div style="font-family: Arial, 'Courier New', monospace; font-size: 14pt;  background-color: #191D22; color: #FFFFFF;">
-<pre><code><span>  MarkdownHelpViewer </span><span style="color: #569CD6; font-weight: bold; ">in</span><span> </span><span style="color: #CE9178; ">'..\..\AppInterface\MarkDownHelpViewer.pas'</span><span style="color: #D4D4D4; ">,</span>
+<div style="font-family: Arial, 'Courier New', monospace; font-size: 16pt;  background-color: #FFFFFF; color: #000000;">
+<pre><code><span>  MarkdownHelpViewer </span><span style="color: #0000FF; font-weight: bold; ">in</span><span> </span><span style="color: #A31515; ">'..\..\AppInterface\MarkDownHelpViewer.pas'</span><span style="color: #555555; ">,</span>
 </code></pre>
 </div>
 <p>then specify the default file of the help:</p>
-<div style="font-family: Arial, 'Courier New', monospace; font-size: 14pt;  background-color: #191D22; color: #FFFFFF;">
-<pre><code><span>  Application</span><span style="color: #D4D4D4; ">.</span><span>HelpFile </span><span style="color: #D4D4D4; ">:=</span><span> ExtractFilePath</span><span style="color: #D4D4D4; ">(</span><span>Application</span><span style="color: #D4D4D4; ">.</span><span>ExeName</span><span style="color: #D4D4D4; ">)+</span><span style="color: #CE9178; ">'..\Help\Home.md'</span><span style="color: #D4D4D4; ">;</span>
+<div style="font-family: Arial, 'Courier New', monospace; font-size: 16pt;  background-color: #FFFFFF; color: #000000;">
+<pre><code><span>  Application</span><span style="color: #555555; ">.</span><span>HelpFile </span><span style="color: #555555; ">:=</span><span> ExtractFilePath</span><span style="color: #555555; ">(</span><span>Application</span><span style="color: #555555; ">.</span><span>ExeName</span><span style="color: #555555; ">)+</span><span style="color: #A31515; ">'..\Help\Home.md'</span><span style="color: #555555; ">;</span>
 </code></pre>
 </div>
 <p>If you have installed the viewer using the provided Setup, the installation folder of the Viewer is registere into:</p>
@@ -90,23 +90,23 @@ HKEY_CLASSES_ROOT\Applications\MDHelpViewer.exe\Shell\Open\Command
 </code>
 so the interface can launch the viewer automatically.</p>
 <p>If you don't want to use the provided Setup you can register the location of the Viewer built by yourself and deployed to a specific location, for example:</p>
-<div style="font-family: Arial, 'Courier New', monospace; font-size: 14pt;  background-color: #191D22; color: #FFFFFF;">
-<pre><code><span style="color: #C586C0; font-style: italic; ">{$IFDEF WIN32}</span>
-<span>  RegisterMDViewerLocation</span><span style="color: #D4D4D4; ">(</span><span>ExtractFilePath</span><span style="color: #D4D4D4; ">(</span><span>Application</span><span style="color: #D4D4D4; ">.</span><span>ExeName</span><span style="color: #D4D4D4; ">)+</span>
-<span>    </span><span style="color: #CE9178; ">'..\..\Bin32\MDHelpViewer.exe'</span><span style="color: #D4D4D4; ">);</span>
-<span style="color: #C586C0; font-style: italic; ">{$ELSE}</span>
-<span>  RegisterMDViewerLocation</span><span style="color: #D4D4D4; ">(</span><span>ExtractFilePath</span><span style="color: #D4D4D4; ">(</span><span>Application</span><span style="color: #D4D4D4; ">.</span><span>ExeName</span><span style="color: #D4D4D4; ">)+</span>
-<span>    </span><span style="color: #CE9178; ">'..\..\Bin64\MDHelpViewer.exe'</span><span style="color: #D4D4D4; ">);</span>
-<span style="color: #C586C0; font-style: italic; ">{$ENDIF}</span>
+<div style="font-family: Arial, 'Courier New', monospace; font-size: 16pt;  background-color: #FFFFFF; color: #000000;">
+<pre><code><span style="color: #800080; font-style: italic; ">{$IFDEF WIN32}</span>
+<span>  RegisterMDViewerLocation</span><span style="color: #555555; ">(</span><span>ExtractFilePath</span><span style="color: #555555; ">(</span><span>Application</span><span style="color: #555555; ">.</span><span>ExeName</span><span style="color: #555555; ">)+</span>
+<span>    </span><span style="color: #A31515; ">'..\..\Bin32\MDHelpViewer.exe'</span><span style="color: #555555; ">);</span>
+<span style="color: #800080; font-style: italic; ">{$ELSE}</span>
+<span>  RegisterMDViewerLocation</span><span style="color: #555555; ">(</span><span>ExtractFilePath</span><span style="color: #555555; ">(</span><span>Application</span><span style="color: #555555; ">.</span><span>ExeName</span><span style="color: #555555; ">)+</span>
+<span>    </span><span style="color: #A31515; ">'..\..\Bin64\MDHelpViewer.exe'</span><span style="color: #555555; ">);</span>
+<span style="color: #800080; font-style: italic; ">{$ENDIF}</span>
 </code></pre>
 </div>
 <h3>Rules to open the correct file using HelpContext or HelpTopic</h3>
 <p>To test the application you can lauch the Home.md help using the menu About/Help: in the OnClick handler invoke the help:</p>
-<div style="font-family: Arial, 'Courier New', monospace; font-size: 14pt;  background-color: #191D22; color: #FFFFFF;">
-<pre><code><span style="color: #569CD6; font-weight: bold; ">procedure</span><span> TfmMain</span><span style="color: #D4D4D4; ">.</span><span>HelpMenuItemClick</span><span style="color: #D4D4D4; ">(</span><span>Sender</span><span style="color: #D4D4D4; ">:</span><span> TObject</span><span style="color: #D4D4D4; ">);</span>
-<span style="color: #569CD6; font-weight: bold; ">begin</span>
-<span>  Application</span><span style="color: #D4D4D4; ">.</span><span>HelpKeyword</span><span style="color: #D4D4D4; ">(</span><span style="color: #CE9178; ">'home'</span><span style="color: #D4D4D4; ">);</span>
-<span style="color: #569CD6; font-weight: bold; ">end</span><span style="color: #D4D4D4; ">;</span>
+<div style="font-family: Arial, 'Courier New', monospace; font-size: 16pt;  background-color: #FFFFFF; color: #000000;">
+<pre><code><span style="color: #0000FF; font-weight: bold; ">procedure</span><span> TfmMain</span><span style="color: #555555; ">.</span><span>HelpMenuItemClick</span><span style="color: #555555; ">(</span><span>Sender</span><span style="color: #555555; ">:</span><span> TObject</span><span style="color: #555555; ">);</span>
+<span style="color: #0000FF; font-weight: bold; ">begin</span>
+<span>  Application</span><span style="color: #555555; ">.</span><span>HelpKeyword</span><span style="color: #555555; ">(</span><span style="color: #A31515; ">'home'</span><span style="color: #555555; ">);</span>
+<span style="color: #0000FF; font-weight: bold; ">end</span><span style="color: #555555; ">;</span>
 </code></pre>
 </div>
 <p>In any Delphi component, you can define HelpType (htKeyword or htContext) and the specify HelpKeyword (string) or HelpContext (Integer).</p>
@@ -119,6 +119,11 @@ so the interface can launch the viewer automatically.</p>
 <li>At least, try the Help Name and the Keyword with underscore (eg.Home_1000.md, Home_MainForm.md)</li>
 </ul>
 <h2>Release Notes</h2>
+<p>17 Jun 2026: ver. 2.5.1</p>
+<ul>
+<li>Fixed markdown processor for Table content</li>
+<li>updated Markdown Support Test.md file</li>
+</ul>
 <p>08 Jun 2026: ver. 2.5.0</p>
 <ul>
 <li>Added syntax highlighting of fenced code blocks in the HTML preview, based on the language, like GitHub.</li>
