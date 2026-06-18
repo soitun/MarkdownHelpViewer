@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{24D0B30B-CAAD-481A-8D2D-2BF73501E349}</ProjectGuid>
         <MainSource>MarkDownViewer.dpk</MainSource>
-        <ProjectVersion>19.5</ProjectVersion>
+        <ProjectVersion>16.0</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
@@ -96,8 +96,9 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="vclimg.dcp"/>
         <DCCReference Include="vcl.dcp"/>
-        <DCCReference Include="FrameViewerXE8.dcp"/>
+        <DCCReference Include="FrameViewer.dcp"/>
         <DCCReference Include="..\..\Source\Components\MarkDownViewerComponents.pas"/>
+        <DCCReference Include="..\..\Source\Components\MDCodeHighlightEmitter.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownCommonMark.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownDaringFireball.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownMathCode.pas"/>
@@ -128,6 +129,10 @@
                 <Excluded_Packages/>
             </Delphi.Personality>
             <Platforms>
+                <Platform value="Android">False</Platform>
+                <Platform value="Android64">False</Platform>
+                <Platform value="iOSDevice64">False</Platform>
+                <Platform value="iOSSimulator">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>

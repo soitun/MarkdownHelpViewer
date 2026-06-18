@@ -1,6 +1,6 @@
 ﻿# Markdown Help Viewer [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
-**Latest Version 2.5.1 - 17 Jun 2026**
+**Latest Version 2.5.2 - 18 Jun 2026**
 
 **An integrated help system based on files in Markdown format (and also html), for Delphi and Windows applications**
 
@@ -37,9 +37,37 @@ Follow the [Project Site](https://ethea.it/docs/markdowntools/) to known how to 
 
 ### Setup using the Installer
 
-Click to download the [MarkDownHelpViewerSetup.exe][1] located also in the Release area. The Installer works both for 32 and 64 bit system.
+Click to download the [MarkDownHelpViewerSetup.exe][1] located also in the Release area. The Installer works both for 32 and 64 bit system. Warning: this setup installs only the viewer.
 
 ![Markdown Setup_Program](./Images/Setup.png)
+
+### Manual installation of Packages
+
+If you want to use the Delphi Component you need to manual Build and Install the packages.
+
+Open the correct group-project file for your Delphi version, located into Packages folder (for example: Packages\D13\MarkDownHelpViewerGroup.groupproj).
+
+Then Build the run-time packages:
+- FrameViewerXXX.bpl
+- MarkDownViewerXXX.bpl
+
+and Install the design-time package:
+- dclMarkDownViewerXXX.bpl
+
+The component TMarkdownViewer is ready to use.
+
+Remember also to add those Search Path:
+- {MarkdownViewerInstallDir}\Source
+- {MarkdownViewerInstallDir}\Components
+- {MarkdownViewerInstallDir}\AppInterface
+- {MarkdownViewerInstallDir}\Ext\HTMLViewer\Source
+- {MarkdownViewerInstallDir}\Ext\MarkdownProcessor\source
+
+### Manual Build of the Viewer
+
+If you want to manual Build the Viewer, you can Build:
+
+**{MarkdownViewerInstallDir}\Source\MDHelpViewer.dproj**
 
 ### Markdown Help Viewer in action
 
@@ -107,6 +135,9 @@ Then the interface searches in the same folder of default file (specified into A
 - At least, try the Help Name and the Keyword with underscore (eg.Home_1000.md, Home_MainForm.md)
 
 ## Release Notes ##
+18 Jun 2026: ver. 2.5.2
+- Fixed Packages for manual build
+
 17 Jun 2026: ver. 2.5.1
 - Fixed markdown processor for Table content
 - updated Markdown Support Test.md file

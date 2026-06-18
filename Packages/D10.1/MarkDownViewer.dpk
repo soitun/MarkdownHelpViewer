@@ -39,6 +39,7 @@ requires
 
 contains
   MarkDownViewerComponents in '..\..\Source\Components\MarkDownViewerComponents.pas',
+  MDCodeHighlightEmitter in '..\..\Source\Components\MDCodeHighlightEmitter.pas',
   MarkdownCommonMark in '..\..\Ext\MarkdownProcessor\source\MarkdownCommonMark.pas',
   MarkdownDaringFireball in '..\..\Ext\MarkdownProcessor\source\MarkdownDaringFireball.pas',
   MarkdownMathCode in '..\..\Ext\MarkdownProcessor\source\MarkdownMathCode.pas',

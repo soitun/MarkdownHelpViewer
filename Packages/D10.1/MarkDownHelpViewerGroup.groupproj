@@ -58,12 +58,6 @@
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
     <ItemGroup Condition="'$(BuildGroup)'=='ALL_Win64'">
-        <BuildGroupProject Include="dclMarkDownViewer.dproj">
-            <ProjectGuid>{722DF10B-F8AF-4513-BB2E-6926B7E8B8DA}</ProjectGuid>
-            <Configurations>Release</Configurations>
-            <Platforms>Win64</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Ext\HTMLViewer\package\Rad Studio 10.1\FrameViewer.dproj">
             <ProjectGuid>{B89B1394-4313-455B-8E21-9B7B17D41185}</ProjectGuid>
             <Configurations>Release</Configurations>
@@ -75,6 +69,12 @@
             <Configurations>Release</Configurations>
             <Platforms>Win64</Platforms>
             <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="dclMarkDownViewer.dproj">
+            <ProjectGuid>{722DF10B-F8AF-4513-BB2E-6926B7E8B8DA}</ProjectGuid>
+            <Configurations>Release</Configurations>
+            <Platforms>Win64</Platforms>
+            <Enabled>False</Enabled>
         </BuildGroupProject>
     </ItemGroup>
     <ItemGroup Condition="'$(BuildGroup)'=='ALL_Win32'">
@@ -84,14 +84,14 @@
             <Platforms>Win32</Platforms>
             <Enabled>True</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="dclMarkDownViewer.dproj">
-            <ProjectGuid>{722DF10B-F8AF-4513-BB2E-6926B7E8B8DA}</ProjectGuid>
+        <BuildGroupProject Include="MarkDownViewer.dproj">
+            <ProjectGuid>{02FC239C-E452-4D3A-84EE-048C17BDAC86}</ProjectGuid>
             <Configurations>Release</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>True</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="MarkDownViewer.dproj">
-            <ProjectGuid>{02FC239C-E452-4D3A-84EE-048C17BDAC86}</ProjectGuid>
+        <BuildGroupProject Include="dclMarkDownViewer.dproj">
+            <ProjectGuid>{722DF10B-F8AF-4513-BB2E-6926B7E8B8DA}</ProjectGuid>
             <Configurations>Release</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>True</Enabled>

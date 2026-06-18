@@ -33,7 +33,7 @@ td{
 }
 </style>
 <h1>Markdown Help Viewer <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg" alt="License"/></a></h1>
-<p><strong>Latest Version 2.5.1 - 17 Jun 2026</strong></p>
+<p><strong>Latest Version 2.5.2 - 18 Jun 2026</strong></p>
 <p><strong>An integrated help system based on files in Markdown format (and also html), for Delphi and Windows applications</strong></p>
 <ul>
 <li><p>A &ldquo;Setup&rdquo; of the pre-built <strong>&ldquo;Markdown Help Viewer&rdquo;</strong> ready to use.</p>
@@ -66,8 +66,32 @@ td{
 </li>
 </ul>
 <h3>Setup using the Installer</h3>
-<p>Click to download the <a href="https://github.com/EtheaDev/MarkdownHelpViewer/releases/latest/download/MarkDownHelpViewerSetup.exe">MarkDownHelpViewerSetup.exe</a> located also in the Release area. The Installer works both for 32 and 64 bit system.</p>
+<p>Click to download the <a href="https://github.com/EtheaDev/MarkdownHelpViewer/releases/latest/download/MarkDownHelpViewerSetup.exe">MarkDownHelpViewerSetup.exe</a> located also in the Release area. The Installer works both for 32 and 64 bit system. Warning: this setup installs only the viewer.</p>
 <p><img src="./Images/Setup.png" alt="Markdown Setup_Program"/></p>
+<h3>Manual installation of Packages</h3>
+<p>If you want to use the Delphi Component you need to manual Build and Install the packages.</p>
+<p>Open the correct group-project file for your Delphi version, located into Packages folder (for example: Packages\D13\MarkDownHelpViewerGroup.groupproj).</p>
+<p>Then Build the run-time packages:</p>
+<ul>
+<li>FrameViewerXXX.bpl</li>
+<li>MarkDownViewerXXX.bpl</li>
+</ul>
+<p>and Install the design-time package:</p>
+<ul>
+<li>dclMarkDownViewerXXX.bpl</li>
+</ul>
+<p>The component TMarkdownViewer is ready to use.</p>
+<p>Remember also to add those Search Path:</p>
+<ul>
+<li>{MarkdownViewerInstallDir}\Source</li>
+<li>{MarkdownViewerInstallDir}\Components</li>
+<li>{MarkdownViewerInstallDir}\AppInterface</li>
+<li>{MarkdownViewerInstallDir}\Ext\HTMLViewer\Source</li>
+<li>{MarkdownViewerInstallDir}\Ext\MarkdownProcessor\source</li>
+</ul>
+<h3>Manual Build of the Viewer</h3>
+<p>If you want to manual Build the Viewer, you can Build:</p>
+<p><strong>{MarkdownViewerInstallDir}\Source\MDHelpViewer.dproj</strong></p>
 <h3>Markdown Help Viewer in action</h3>
 <p>A useful Viewer for instant preview of Markdown formatted content help files (with auto-detection of Windows-Theme):</p>
 <p><img src="./Images/ContentPageDark.png" alt="Markdown Help Viewer"/></p>
@@ -119,6 +143,10 @@ so the interface can launch the viewer automatically.</p>
 <li>At least, try the Help Name and the Keyword with underscore (eg.Home_1000.md, Home_MainForm.md)</li>
 </ul>
 <h2>Release Notes</h2>
+<p>18 Jun 2026: ver. 2.5.2</p>
+<ul>
+<li>Fixed Packages for manual build</li>
+</ul>
 <p>17 Jun 2026: ver. 2.5.1</p>
 <ul>
 <li>Fixed markdown processor for Table content</li>

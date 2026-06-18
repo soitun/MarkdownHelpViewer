@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{02FC239C-E452-4D3A-84EE-048C17BDAC86}</ProjectGuid>
         <MainSource>MarkDownViewer.dpk</MainSource>
-        <ProjectVersion>19.5</ProjectVersion>
+        <ProjectVersion>18.2</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
@@ -39,12 +39,6 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
-        <Cfg_2_Win32>true</Cfg_2_Win32>
-        <CfgParent>Cfg_2</CfgParent>
-        <Cfg_2>true</Cfg_2>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_DcuOutput>..\..\Lib\D10.1\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
@@ -63,7 +57,7 @@
         <DCC_Description>Ethea Markdown Help Viewer Components</DCC_Description>
         <DllSuffix>240</DllSuffix>
         <RuntimeOnlyPackage>true</RuntimeOnlyPackage>
-        <DCC_UnitSearchPath>..\..\Ext\MarkdownProcessor\Source;..\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\Ext\HTMLViewer\Source;..\..\Ext\MarkdownProcessor\Source;..\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <VerInfo_MinorVer>3</VerInfo_MinorVer>
@@ -104,6 +98,7 @@
         <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="FrameViewer.dcp"/>
         <DCCReference Include="..\..\Source\Components\MarkDownViewerComponents.pas"/>
+        <DCCReference Include="..\..\Source\Components\MDCodeHighlightEmitter.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownCommonMark.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownDaringFireball.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownMathCode.pas"/>
@@ -111,15 +106,15 @@
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownTables.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownTxtMark.pas"/>
         <DCCReference Include="..\..\Ext\MarkdownProcessor\source\MarkdownUtils.pas"/>
-        <BuildConfiguration Include="Release">
-            <Key>Cfg_2</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
@@ -134,6 +129,10 @@
                 <Excluded_Packages/>
             </Delphi.Personality>
             <Platforms>
+                <Platform value="Android">False</Platform>
+                <Platform value="Android64">False</Platform>
+                <Platform value="iOSDevice64">False</Platform>
+                <Platform value="iOSSimulator">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>

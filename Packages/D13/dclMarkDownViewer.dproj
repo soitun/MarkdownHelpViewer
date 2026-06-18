@@ -6,7 +6,7 @@
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Package</AppType>
         <ProjectName Condition="'$(ProjectName)'==''">dclMarkDownViewer</ProjectName>
@@ -21,11 +21,6 @@
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win64x' and '$(Base)'=='true') or '$(Base_Win64x)'!=''">
         <Base_Win64x>true</Base_Win64x>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='WinARM64EC' and '$(Base)'=='true') or '$(Base_WinARM64EC)'!=''">
-        <Base_WinARM64EC>true</Base_WinARM64EC>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
@@ -62,7 +57,7 @@
         <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileDescription=MarkDown Help Viewer;FileVersion=2.0.0.0;InternalName=;LegalCopyright=Copyright Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProgramID=;ProductName=;ProductVersion=2.0;Comments=</VerInfo_Keys>
         <DCC_Description>Ethea Markdown Help Viewer Components</DCC_Description>
         <DllSuffix>$(Auto)</DllSuffix>
-        <DCC_UnitSearchPath>..\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\Ext\HTMLViewer\Source;..\..\Ext\MarkdownProcessor\Source;..\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DesignOnlyPackage>true</DesignOnlyPackage>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
@@ -72,10 +67,6 @@
         <DCC_UsePackage>MarkDownViewer;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64x)'!=''">
-        <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_WinARM64EC)'!=''">
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>

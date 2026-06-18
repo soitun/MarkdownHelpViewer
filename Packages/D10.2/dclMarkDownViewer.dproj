@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{72DB5917-2894-4F15-BBD5-07914BEFBC2D}</ProjectGuid>
         <MainSource>dclMarkDownViewer.dpk</MainSource>
-        <ProjectVersion>19.1</ProjectVersion>
+        <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
@@ -51,7 +51,7 @@
         <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileDescription=MarkDown Help Viewer;FileVersion=2.0.0.0;InternalName=;LegalCopyright=Copyright Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProgramID=;ProductName=;ProductVersion=2.0;Comments=</VerInfo_Keys>
         <DCC_Description>Ethea Markdown Help Viewer Components</DCC_Description>
         <DllSuffix>250</DllSuffix>
-        <DCC_UnitSearchPath>..\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\Ext\HTMLViewer\Source;..\..\Ext\MarkdownProcessor\Source;..\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DesignOnlyPackage>true</DesignOnlyPackage>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
@@ -87,15 +87,15 @@
         <DCCReference Include="DesignIDE.dcp"/>
         <DCCReference Include="MarkDownViewer.dcp"/>
         <DCCReference Include="..\MarkDownViewerRegister.pas"/>
-        <BuildConfiguration Include="Release">
-            <Key>Cfg_2</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
@@ -110,6 +110,10 @@
                 <Excluded_Packages/>
             </Delphi.Personality>
             <Platforms>
+                <Platform value="Android">False</Platform>
+                <Platform value="Android64">False</Platform>
+                <Platform value="iOSDevice64">False</Platform>
+                <Platform value="iOSSimulator">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
