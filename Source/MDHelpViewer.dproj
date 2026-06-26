@@ -70,7 +70,7 @@
         <SanitizedProjectName>MDHelpViewer</SanitizedProjectName>
         <DCC_UnitSearchPath>Components;..\Ext\HTMLViewer\Source;..\Ext\MarkdownProcessor\Source;..\Ext\SVGIconImageList\Source;..\Ext\SVGIconImageList\Image32\Source;..\Ext\SynPDF;..\Ext\VclStyleUtils\Common;..\Ext\VclStyleUtils\DDetours\Source;..\Ext\StyledComponents\source;..\Ext\ISMultiLanguage\src\Engine;..\Ext\SynEdit\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileDescription=Markdown Help Viewer;FileVersion=2.5.2.0;InternalName=;LegalCopyright=Copyright (c) Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProgramID=;ProductName=MarkdownHelpViewer;ProductVersion=2.5;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileDescription=Markdown Help Viewer;FileVersion=2.5.3.0;InternalName=;LegalCopyright=Copyright (c) Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProgramID=;ProductName=MarkdownHelpViewer;ProductVersion=2.5;Comments=</VerInfo_Keys>
         <Custom_Styles>Glow|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Glow.vsf;Sky|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Sky.vsf;&quot;Windows Modern|VCLSTYLE|$(BDSCOMMONDIR)\Styles\WindowsModern.vsf&quot;;&quot;Windows Modern Dark|VCLSTYLE|$(BDSCOMMONDIR)\Styles\WindowsModernDark.vsf&quot;;Windows10|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10.vsf;&quot;Windows10 Dark|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10Dark.vsf&quot;;&quot;Windows10 SlateGray|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10SlateGray.vsf&quot;</Custom_Styles>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>

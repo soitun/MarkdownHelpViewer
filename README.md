@@ -1,6 +1,6 @@
 ﻿# Markdown Help Viewer [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
-**Latest Version 2.5.2 - 18 Jun 2026**
+**Latest Version 2.5.3 - 26 Jun 2026**
 
 **An integrated help system based on files in Markdown format (and also html), for Delphi and Windows applications**
 
@@ -135,6 +135,9 @@ Then the interface searches in the same folder of default file (specified into A
 - At least, try the Help Name and the Keyword with underscore (eg.Home_1000.md, Home_MainForm.md)
 
 ## Release Notes ##
+26 Jun 2026: ver. 2.5.3
+- Fixed Access Violation in the fenced code-block syntax highlighter when the theme or font changed (e.g. zooming the preview).
+
 18 Jun 2026: ver. 2.5.2
 - Fixed Packages for manual build
 
